@@ -5,7 +5,7 @@ local studio = settings():GetService("Studio")
 local currentTheme = vide.source(studio.Theme)
 
 studio.ThemeChanged:Connect(function()
-  currentTheme:setValue(studio.Theme)
+  currentTheme(studio.Theme)
 end)
 
 local function theme(color: Enum.StudioStyleGuideColor, modifier: Enum.StudioStyleGuideModifier?): vide.Source<Color3>
