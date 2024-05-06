@@ -18,7 +18,7 @@ jobs:
             -   run: rojo sourcemap default.project.json --output sourcemap.json
             -   run: wally-package-types --sourcemap sourcemap.json Packages/
             -   run: PLUGIN_NAME=$(cat ./wally.toml | grep -oP 'name = \".*/\K.*(?=\")')
-            -   run: rojo build --output "$PLUGIN_NAME".rbxm
+            -   run: rojo build --output "$PLUGIN_NAME.rbxm"
             -   run: echo "VERSION=$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
             -   run: echo "ARTIFACTS=$PLUGIN_NAME.rbxm" >> "$GITHUB_ENV"
             -   uses: ncipollo/release-action@v1
