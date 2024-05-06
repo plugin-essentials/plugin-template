@@ -18,9 +18,9 @@ jobs:
             -   run: rojo sourcemap default.project.json --output sourcemap.json
             -   run: wally-package-types --sourcemap sourcemap.json Packages/
             -   run: rojo build --output "$(cat ./wally.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm"
-            -   run: echo "VERSION=$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
+            -   run: echo "VERSION=v$(cat wally.toml | grep -Po 'version = "\K[0-9.]*(?=")')" >> "$GITHUB_ENV"
             -   run: echo "ARTIFACTS=$(cat ./wally.toml | grep -oP 'name = \".*/\K.*(?=\")').rbxm" >> "$GITHUB_ENV"
             -   uses: ncipollo/release-action@v1
                 with:
                     artifacts: ${{ env.ARTIFACTS }}
-                    token: ${{ env.GITHUB_TOKEN }}
+                    tag: ${{ env.VERSION }}
